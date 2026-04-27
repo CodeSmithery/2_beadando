@@ -1,3 +1,21 @@
+/*
+    Ez az egyetlen fájl kezeli az összes háttérműveletet:
+
+    CRUD műveletek (városok, megyék, lélekszám)
+
+    kapcsolat űrlap mentése
+
+    képfeltöltés
+
+    bejelentkezés, regisztráció
+
+    adatok lekérése AJAX‑hoz
+
+    A JavaScript minden műveletet ehhez a fájlhoz küld POST vagy GET kéréssel.
+
+*/
+
+
 <?php
 require "db.php";
 $action = $_POST['action'];

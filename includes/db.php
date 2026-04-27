@@ -1,3 +1,8 @@
+/*
+    Az adatbázis kapcsolatot létrehozó fájl (PDO).
+    Ezt az api.php és a login/regisztrációs oldalak használják.
+*/
+
 <?php
 $host = "localhost";
 $db   = "ajax_crud";

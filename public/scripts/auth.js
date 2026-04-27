@@ -1,0 +1,1 @@
+// A bejelentkezés és regisztráció AJAX‑os működése.
