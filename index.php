@@ -1,8 +1,3 @@
-/*
-    A weboldal kezdőlapja. Itt jelenik meg a menü, a fő tartalom, a videók és a téma bemutatása. 
-    A header.php és footer.php fájlokkal együtt épül fel.
-*/
-
 <?php
 session_start();
 
@@ -11,7 +6,7 @@ $page = $_GET['page'] ?? 'home';
 include "includes/header.php";
 
 if ($page == "home") {
-    echo "<h2>Főoldal</h2>";
+    include "home.php";
 }
 elseif ($page == "crud") {
     include "crud.php";
@@ -30,6 +25,12 @@ elseif ($page == "pictures") {
 }
 elseif ($page == "connection") {
     include "connection.php";
+}
+elseif ($page == "messages") {
+    include "messages.php";
+}
+elseif ($page == "message_view") {
+    include "messages_view.php";
 }
 else {
     echo "404 - Nincs ilyen oldal";
