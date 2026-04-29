@@ -1,5 +1,12 @@
-/* 
-    - törli a sessionben tárolt bejelentkezési adatokat
-    - ezzel kijelentkezteti a felhasználót
-    - majd visszairányítja a főoldalra
-*/
+<?php
+session_start();
+
+// Minden session változó törlése
+session_unset();
+
+// Session teljes megsemmisítése
+session_destroy();
+
+// Visszairányítás a főoldalra
+header("Location: index.php");
+exit;
