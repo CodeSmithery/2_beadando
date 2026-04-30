@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email    = trim($_POST['email']);
     $password = trim($_POST['password']);
 
+    // Ellenőrzés: létezik-e már a felhasználónév
     $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
     $stmt->execute([$username]);
 
@@ -36,8 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return;
     }
 
+    // Jelszó hash-elése
     $hashed = password_hash($password, PASSWORD_DEFAULT);
 
+    // Mentés
     $stmt = $pdo->prepare("
         INSERT INTO users (fullname, username, email, password)
         VALUES (?, ?, ?, ?)
