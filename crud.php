@@ -3,6 +3,7 @@ require "includes/db.php";
 
 $action = $_GET['action'] ?? 'list';
 
+// --- LISTÁZÁS ---
 if ($action == 'list') {
 
     $stmt = $pdo->query("
@@ -43,9 +44,10 @@ if ($action == 'list') {
 
     echo "</table>";
 }
-
+// --- ÚJ VÁROS FELVÉTELE ---
 if ($action == 'new') {
 
+    // Megyék lekérése a legördülő listához
     $megyek = $pdo->query("SELECT * FROM megye ORDER BY nev")->fetchAll();
 
     echo "<h2>Új város felvétele</h2>";
@@ -78,11 +80,12 @@ if ($action == 'new') {
             <button type="submit">Mentés</button>
           </form>';
 }
-
+// --- VÁROS SZERKESZTÉSE ---
 if ($action == 'edit') {
 
     $id = $_GET['id'] ?? 0;
 
+    // Város adatainak lekérése
     $stmt = $pdo->prepare("SELECT * FROM varos WHERE id = ?");
     $stmt->execute([$id]);
     $varos = $stmt->fetch();
@@ -92,6 +95,7 @@ if ($action == 'edit') {
         return;
     }
 
+    // Megyék lekérése
     $megyek = $pdo->query("SELECT * FROM megye ORDER BY nev")->fetchAll();
 
     echo "<h2>Város szerkesztése</h2>";
@@ -126,7 +130,7 @@ if ($action == 'edit') {
             <button type="submit">Mentés</button>
           </form>';
 }
-
+// --- VÁROS TÖRLÉSE ---
 if ($action == 'delete') {
 
     $id = $_GET['id'] ?? 0;
