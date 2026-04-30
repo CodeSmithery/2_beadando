@@ -1,11 +1,14 @@
-<?php
-session_start();
+﻿<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Weboldal</title>
+    <link rel="stylesheet" href="public/styles/main.css">
 </head>
 <body>
 
@@ -27,6 +30,16 @@ session_start();
 
 <hr>
 
+<main class="page-content">
+
 <?php if (isset($_SESSION['user'])): ?>
-    <p>Bejelentkezett: <?= $_SESSION['user'] ?></p>
+    <p>
+        Bejelentkezett: 
+        <?php if (is_array($_SESSION['user'])): ?>
+            <?= htmlspecialchars(trim($_SESSION['user']['lastname'] . ' ' . $_SESSION['user']['firstname']), ENT_QUOTES, 'UTF-8') ?>
+            (<?= htmlspecialchars($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8') ?>)
+        <?php else: ?>
+            <?= htmlspecialchars($_SESSION['user'], ENT_QUOTES, 'UTF-8') ?>
+        <?php endif; ?>
+    </p>
 <?php endif; ?>

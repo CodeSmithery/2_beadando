@@ -1,4 +1,4 @@
-<h2>Képgaléria</h2>
+﻿<h2>Képgaléria</h2>
 
 <?php if (isset($_SESSION['user'])): ?>
 <form action="api.php" method="POST" enctype="multipart/form-data">
@@ -14,11 +14,11 @@
 
 <h3>Feltöltött képek</h3>
 
-<div style="display:flex; flex-wrap:wrap; gap:10px;">
+<div class="image-grid">
 <?php
 $files = glob("public/uploads/images/*.*");
 foreach ($files as $file) {
-    echo "<img src='$file' style='width:200px; border:1px solid #ccc;'>";
+    echo "<img src='" . htmlspecialchars($file, ENT_QUOTES, 'UTF-8') . "' class='gallery-image'>";
 }
 ?>
 </div>
