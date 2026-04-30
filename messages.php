@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 if (!isset($_SESSION['user'])) {
     echo "<p>Az üzenetek megtekintéséhez be kell jelentkezni.</p>";
     return;
@@ -12,7 +12,7 @@ $messages = $stmt->fetchAll();
 
 <h2>Beérkezett üzenetek</h2>
 
-<table border="1" cellpadding="8">
+<table class="data-table">
     <tr>
         <th>Név</th>
         <th>Email</th>
@@ -26,8 +26,8 @@ $messages = $stmt->fetchAll();
         <td><?= htmlspecialchars($m['name']) ?></td>
         <td><?= htmlspecialchars($m['email']) ?></td>
         <td><?= nl2br(htmlspecialchars($m['message'])) ?></td>
-        <td><?= $m['created_at'] ?></td>
-        <td><?= $m['user_name'] ?></td>
+        <td><?= htmlspecialchars($m['created_at']) ?></td>
+        <td><?= htmlspecialchars($m['user_name']) ?></td>
     </tr>
     <?php endforeach; ?>
 </table>

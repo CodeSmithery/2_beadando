@@ -1,7 +1,7 @@
-<?php
+﻿<?php
 session_start();
 
-$page = $_GET['page'] ?? 'home';
+$page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
 include "includes/header.php";
 
@@ -37,4 +37,3 @@ else {
 }
 
 include "includes/footer.php";
-?>

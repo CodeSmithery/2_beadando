@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require "includes/db.php";
 
 $action = $_GET['action'] ?? 'list';
@@ -6,18 +6,13 @@ $action = $_GET['action'] ?? 'list';
 // --- LISTÁZÁS ---
 if ($action == 'list') {
 
-    $stmt = $pdo->query("
-        SELECT varos.*, megye.nev AS megye_nev
-        FROM varos
-        JOIN megye ON varos.megyeid = megye.id
-        ORDER BY varos.nev
-    ");
+    $stmt = $pdo->query("\n        SELECT varos.*, megye.nev AS megye_nev\n        FROM varos\n        JOIN megye ON varos.megyeid = megye.id\n        ORDER BY varos.nev\n    ");
     $rows = $stmt->fetchAll();
 
     echo "<h2>Városok</h2>";
     echo '<a href="index.php?page=crud&action=new">Új város felvétele</a><br><br>';
 
-    echo "<table border='1' cellpadding='8'>";
+    echo "<table class='data-table'>";
     echo "<tr>
             <th>ID</th>
             <th>Név</th>
@@ -37,10 +32,10 @@ if ($action == 'list') {
                 <td>
                     <a href='index.php?page=crud&action=edit&id={$r['id']}'>Szerkesztés</a> |
                     <a href='index.php?page=crud&action=delete&id={$r['id']}'
-                       onclick='return confirm(\"Biztos törlöd?\")'>Törlés</a>
+                       onclick='return confirm(`Biztos törlöd?`)'>Törlés</a>
                 </td>
-              </tr>";
-    }
+              </tr>"
+    ;}
 
     echo "</table>";
 }

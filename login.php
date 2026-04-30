@@ -1,11 +1,11 @@
-<h2>Belépés</h2>
+﻿<h2>Belépés</h2>
 
 <form method="POST" action="index.php?page=login">
-    <label>Felhasználónév:</label><br>
-    <input type="text" name="username" required><br><br>
+    <label>Felhasználónév:</label>
+    <input type="text" name="username" required>
 
-    <label>Jelszó:</label><br>
-    <input type="password" name="password" required><br><br>
+    <label>Jelszó:</label>
+    <input type="password" name="password" required>
 
     <button type="submit">Belépés</button>
 </form>
@@ -28,13 +28,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Ellenőrzés
     if ($user && password_verify($password, $user['password'])) {
 
-        $_SESSION['user'] = $user['username'];
+        $_SESSION['user'] = [
+            'lastname'  => $user['lastname'] ?? '',
+            'firstname' => $user['firstname'] ?? '',
+            'username'  => $user['username']
+        ];
 
-        header("Location: index.php");
-        exit;
+        echo "<p class='success-message'>Sikeres bejelentkezés! Átirányítás...</p>";
+
+        header("Refresh: 1; URL=index.php");
+        return;
 
     } else {
-        echo "<p style='color:red;'>Hibás felhasználónév vagy jelszó!</p>";
+        echo "<p class='error-message'>Hibás felhasználónév vagy jelszó!</p>";
     }
 }
-?>
